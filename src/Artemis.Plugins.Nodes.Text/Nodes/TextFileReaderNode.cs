@@ -2,7 +2,7 @@ using System;
 using System.IO;
 using Artemis.Core;
 
-namespace Artemis.Plugins.Nodes.FileReaders.Nodes
+namespace Artemis.Plugins.Nodes.Text.Nodes
 {
     [Node("Text File Reader", "Reads the contents of a text file.", "Text", InputType = typeof(string), OutputType = typeof(string))]
     public class TextFileReaderNode : Node, IDisposable

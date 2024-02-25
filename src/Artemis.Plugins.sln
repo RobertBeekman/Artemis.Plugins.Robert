@@ -10,7 +10,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Artemis.Plugins.Modules.HomeWizard", "Artemis.Plugins.Modules.HomeWizard\Artemis.Plugins.Modules.HomeWizard.csproj", "{B243A8AC-341E-4EDF-92C0-4D8515406B00}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Artemis.Plugins.Nodes.FileReaders", "Artemis.Plugins.Nodes.FileReaders\Artemis.Plugins.Nodes.FileReaders.csproj", "{BF92E163-C6EE-442D-B61A-3D4F3D2C7AED}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Artemis.Plugins.Nodes.Text", "Artemis.Plugins.Nodes.Text\Artemis.Plugins.Nodes.Text.csproj", "{BF92E163-C6EE-442D-B61A-3D4F3D2C7AED}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -18,14 +18,12 @@ Global
 		Release|x64 = Release|x64
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{B243A8AC-341E-4EDF-92C0-4D8515406B00}.Debug|x64.ActiveCfg = Debug|Any CPU
-		{B243A8AC-341E-4EDF-92C0-4D8515406B00}.Debug|x64.Build.0 = Debug|Any CPU
-		{B243A8AC-341E-4EDF-92C0-4D8515406B00}.Release|x64.ActiveCfg = Release|Any CPU
-		{B243A8AC-341E-4EDF-92C0-4D8515406B00}.Release|x64.Build.0 = Release|Any CPU
 		{BF92E163-C6EE-442D-B61A-3D4F3D2C7AED}.Debug|x64.ActiveCfg = Debug|x64
 		{BF92E163-C6EE-442D-B61A-3D4F3D2C7AED}.Debug|x64.Build.0 = Debug|x64
 		{BF92E163-C6EE-442D-B61A-3D4F3D2C7AED}.Release|x64.ActiveCfg = Release|x64
 		{BF92E163-C6EE-442D-B61A-3D4F3D2C7AED}.Release|x64.Build.0 = Release|x64
+		{B243A8AC-341E-4EDF-92C0-4D8515406B00}.Debug|x64.ActiveCfg = Debug|x64
+		{B243A8AC-341E-4EDF-92C0-4D8515406B00}.Debug|x64.Build.0 = Debug|x64
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

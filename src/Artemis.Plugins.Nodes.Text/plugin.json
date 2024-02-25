@@ -6,7 +6,7 @@
     "Repository": "https://github.com/RobertBeekman/Artemis.Plugins.Robert",
     "Icon": "TextBoxSearchOutline",
     "Version": "1.0.0",
-    "Main": "Artemis.Plugins.Nodes.FileReaders.dll",
+    "Main": "Artemis.Plugins.Nodes.Text.dll",
     "AutoEnableProperties": true,
     "RequiresAdmin": false,
     "Platforms": "Windows,Linux,OSX",
