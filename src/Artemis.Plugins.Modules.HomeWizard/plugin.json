@@ -1,0 +1,14 @@
+{
+  "Guid": "A53F901A-E2CE-4C4A-905A-E6D7F1409A58",
+  "Name": "HomeWizard",
+  "Description": "Adds HomeWizard meter data to the data model. Currently only the P1 meter (HWE-P1) is supported. ",
+  "Author": "Robert",
+  "Repository": "https://github.com/RobertBeekman/Artemis.Plugins.Modules.HomeWizard",
+  "Icon": "homewizard.png",
+  "Version": "1.1.0",
+  "Main": "Artemis.Plugins.Modules.HomeWizard.dll",
+  "AutoEnableProperties": true,
+  "RequiresAdmin": false,
+  "Platforms": "Windows,Linux,OSX",
+  "Api": "1.0.0"
+}

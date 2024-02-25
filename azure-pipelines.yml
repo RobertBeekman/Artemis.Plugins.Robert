@@ -1,0 +1,74 @@
+# .NET Desktop
+# Build and run tests for .NET Desktop or Windows classic desktop solutions.
+# Add steps that publish symbols, save build artifacts, and more:
+# https://docs.microsoft.com/azure/devops/pipelines/apps/windows/dot-net
+
+trigger:
+- master
+pr: none
+
+pool:
+  vmImage: 'windows-latest'
+
+variables:
+  pluginSolution: '**/Artemis.Plugins.sln'
+  pluginProjects: '**/Artemis.Plugins.*.csproj'
+
+steps:
+- checkout: self
+  path: s/Artemis.Plugins
+
+- task: DownloadPipelineArtifact@2
+  displayName: 'Download RGB.NET build artifacts'
+  inputs:
+    buildType: 'specific'
+    project: '882fdc71-c09c-4923-8ab0-2cd9fcf0656d'
+    definition: '3'
+    buildVersionToDownload: 'latest'
+    artifactName: 'RGB.NET development build'
+    targetPath: '$(Pipeline.Workspace)\s\RGB.NET\bin\net5.0'
+
+- task: DownloadPipelineArtifact@2
+  inputs:
+    buildType: 'specific'
+    project: '882fdc71-c09c-4923-8ab0-2cd9fcf0656d'
+    definition: '1'
+    buildVersionToDownload: 'latest'
+    artifactName: 'Artemis build'
+    itemPattern: '!Plugins/**'
+    targetPath: '$(Pipeline.Workspace)\s\Artemis\src\Artemis.UI\bin\x64\Debug\net5.0-windows'
+
+- task: DotNetCoreCLI@2
+  displayName: 'dotnet restore Artemis.Plugins'
+  inputs:
+    command: 'restore'
+    projects: '$(pluginSolution)'
+    feedsToUse: 'select'
+
+- task: PowerShell@2
+  displayName: 'Insert build number into plugin.json'
+  inputs:
+    targetType: 'inline'
+    script: |
+      Get-ChildItem -Recurse -Filter plugin.json  | 
+      Foreach-Object {
+          $buidNumber = "1.0.1." + $Env:BUILD_BUILDID;
+          $a = Get-Content $_.FullName | ConvertFrom-Json
+          $a.Version = $buidNumber;
+          $a | ConvertTo-Json | Set-Content $_.FullName
+      }
+
+- task: DotNetCoreCLI@2
+  displayName: 'Publish Artemis.Plugins'
+  inputs:
+    command: 'publish'
+    publishWebProjects: false
+    arguments: '--runtime win-x64 --self-contained false --output $(Build.ArtifactStagingDirectory)/build/Plugins'
+    projects: '$(pluginProjects)'
+
+- task: PublishPipelineArtifact@1
+  displayName: 'Upload build to Azure Pipelines'
+  inputs:
+    targetPath: '$(Build.ArtifactStagingDirectory)/build'
+    artifact: 'Artemis build'
+    publishLocation: 'pipeline'

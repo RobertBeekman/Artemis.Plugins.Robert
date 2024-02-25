@@ -1,0 +1,14 @@
+{
+    "Guid": "5B5CBF3F-5449-4C20-BDEB-F457B3F5E82D",
+    "Name": "Advanced Text Nodes",
+    "Description": "Provides more advanced text nodes dealing with files, JSON and more",
+    "Author": "Robert",
+    "Repository": "https://github.com/RobertBeekman/Artemis.Plugins.Robert",
+    "Icon": "TextBoxSearchOutline",
+    "Version": "1.0.0",
+    "Main": "Artemis.Plugins.Nodes.FileReaders.dll",
+    "AutoEnableProperties": true,
+    "RequiresAdmin": false,
+    "Platforms": "Windows,Linux,OSX",
+    "Api": "1.0.0"
+}
