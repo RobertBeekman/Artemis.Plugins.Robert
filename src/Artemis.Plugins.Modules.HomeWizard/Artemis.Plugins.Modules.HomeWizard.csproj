@@ -7,8 +7,9 @@
     </PropertyGroup>
 
     <ItemGroup>
-        <PackageReference Include="ArtemisRGB.UI.Shared" IncludeAssets="compile;build;buildTransitive" Version="1.2024.225.2" />
+        <PackageReference Include="ArtemisRGB.UI.Shared" IncludeAssets="compile;build;buildTransitive" Version="1.2024.228.2" />
         <PackageReference Include="Zeroconf" Version="3.6.11" />
+        <PackageReference Remove="Newtonsoft.Json" />
     </ItemGroup>
 
     <ItemGroup>

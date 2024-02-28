@@ -1,6 +1,10 @@
 using System;
+using System.Linq;
+using System.Text.Json;
+using System.Text.Json.Nodes;
 using Artemis.Core;
-using Newtonsoft.Json.Linq;
+using Json.Path;
+using Node = Artemis.Core.Node;
 
 namespace Artemis.Plugins.Nodes.Text.Nodes
 {
@@ -10,6 +14,7 @@ namespace Artemis.Plugins.Nodes.Text.Nodes
         private string? _lastInput;
         private string? _lastPath;
         private object? _lastOutput;
+        private JsonPath? _path;
 
         public JsonQueryNode()
         {
@@ -31,27 +36,29 @@ namespace Artemis.Plugins.Nodes.Text.Nodes
             if (_lastInput == input && _lastPath == path)
                 Output.Value = _lastOutput;
 
+            // If the path changed, reparse it
+            if (_lastPath != path && path != null)
+            {
+                _lastPath = path;
+                _path = JsonPath.Parse(path, new PathParsingOptions {TolerateExtraWhitespace = true, AllowJsonConstructs = true});
+            }
+
             _lastInput = input;
-            _lastPath = path;
-            if (input == null || path == null)
+            if (input == null || _path == null)
                 _lastOutput = null;
             else
             {
-                JToken? match = JObject.Parse(input).SelectToken(path);
+                JsonNode? match = _path.Evaluate(JsonNode.Parse(input)).Matches?.FirstOrDefault()?.Value;
                 if (match != null)
                 {
-                    SetOutputPinType(match.Type);
+                    SetOutputPinType(match.GetValueKind());
 
                     if (Output.Type == typeof(string))
-                        _lastOutput = match.Value<string>();
+                        _lastOutput = match.GetValue<string>();
                     else if (Output.Type == typeof(Numeric))
-                        _lastOutput = new Numeric(match.Value<float>());
+                        _lastOutput = new Numeric(match.GetValue<float>());
                     else if (Output.Type == typeof(bool))
-                        _lastOutput = match.Value<bool>();
-                    else if (Output.Type == typeof(DateTime))
-                        _lastOutput = match.Value<DateTime>();
-                    else if (Output.Type == typeof(TimeSpan))
-                        _lastOutput = match.Value<TimeSpan>();
+                        _lastOutput = match.GetValue<bool>();
                 }
                 else
                 {
@@ -62,37 +69,25 @@ namespace Artemis.Plugins.Nodes.Text.Nodes
             Output.Value = _lastOutput;
         }
 
-        private void SetOutputPinType(JTokenType type)
+        private void SetOutputPinType(JsonValueKind type)
         {
             switch (type)
             {
-                case JTokenType.None:
-                case JTokenType.Object:
-                case JTokenType.Array:
-                case JTokenType.Constructor:
-                case JTokenType.Property:
-                case JTokenType.Comment:
-                case JTokenType.String:
-                case JTokenType.Null:
-                case JTokenType.Undefined:
-                case JTokenType.Uri:
-                case JTokenType.Raw:
-                case JTokenType.Guid:
+                case JsonValueKind.Undefined:
+                case JsonValueKind.Object:
+                case JsonValueKind.Array:
+                case JsonValueKind.String:
+                case JsonValueKind.Null:
                     Output.ChangeType(typeof(string));
                     break;
-                case JTokenType.Integer:
-                case JTokenType.Float:
-                case JTokenType.Bytes:
+                case JsonValueKind.Number:
                     Output.ChangeType(typeof(Numeric));
                     break;
-                case JTokenType.Boolean:
+                case JsonValueKind.True:
                     Output.ChangeType(typeof(bool));
                     break;
-                case JTokenType.Date:
-                    Output.ChangeType(typeof(DateTime));
-                    break;
-                case JTokenType.TimeSpan:
-                    Output.ChangeType(typeof(TimeSpan));
+                case JsonValueKind.False:
+                    Output.ChangeType(typeof(bool));
                     break;
                 default:
                     throw new ArgumentOutOfRangeException(nameof(type), type, null);
