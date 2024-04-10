@@ -1,0 +1,13 @@
+{
+    "Guid": "6DBE2F61-F496-4259-A6A3-A098A00C9A47",
+    "Name": "System Events",
+    "Description": "Provides events for system events like power state changes, session state changes and more.",
+    "Author": "Robert",
+    "Repository": "https://github.com/RobertBeekman/Artemis.Plugins.Robert",
+    "Icon": "Storm",
+    "Version": "1.0.0",
+    "Main": "Artemis.Plugins.Modules.SystemEvents.dll",
+    "RequiresAdmin": false,
+    "Platforms": "Windows",
+    "Api": "1.0.0"
+}
