@@ -1,5 +1,5 @@
 # Artemis Plugins - Robert
-[![Build Status](https://github.com/RobertBeekman/Artemis.Plugins.Robert/actions/workflows/build-plugins.yml/badge.svg)](https://github.com/RobertBeekman/Artemis.Plugins.Robert/actions/workflows/build-plugins.yml)
+[![Build Status](https://github.com/RobertBeekman/Artemis.Plugins.Robert/actions/workflows/artemis-plugins.yml/badge.svg)](https://github.com/RobertBeekman/Artemis.Plugins.Robert/actions/workflows/artemis-plugins.yml)
 [![GitHub license](https://img.shields.io/badge/license-noncommercial-blue.svg)](https://github.com/Artemis-RGB/Artemis.Plugins/blob/master/LICENSE)
 [![GitHub stars](https://img.shields.io/github/stars/Artemis-RGB/Artemis.Plugins.svg)](https://github.com/Artemis-RGB/Artemis.Plugins/stargazers)
 [![Discord](https://img.shields.io/discord/392093058352676874?logo=discord&logoColor=white)](https://discord.gg/S3MVaC9) 
