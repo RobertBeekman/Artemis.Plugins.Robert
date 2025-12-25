@@ -1,14 +1,13 @@
 <Project Sdk="Microsoft.NET.Sdk">
     <PropertyGroup>
-        <TargetFramework>net8.0</TargetFramework>
+        <TargetFramework>net10.0</TargetFramework>
         <Platforms>x64</Platforms>
         <EnableDynamicLoading>true</EnableDynamicLoading>
         <Nullable>enable</Nullable>
     </PropertyGroup>
 
     <ItemGroup>
-        <PackageReference Include="ArtemisRGB.UI.Shared" IncludeAssets="compile;build;buildTransitive" Version="1.2024.314.2" />
-        <PackageReference Include="Microsoft.Win32.SystemEvents" Version="8.0.0" />
+        <PackageReference Include="Microsoft.Win32.SystemEvents" Version="10.0.1" />
     </ItemGroup>
 
     <ItemGroup>

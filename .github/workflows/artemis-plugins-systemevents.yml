@@ -1,0 +1,18 @@
+name: Artemis.Plugins.Modules.SystemEvents - Build and upload
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - master
+    paths:
+      - 'src/Artemis.Plugins.Modules.SystemEvents/**'
+
+jobs:
+  upload:
+    uses: ./.github/workflows/plugin-upload.yml
+    with:
+      projectPath: 'src/Artemis.Plugins.Modules.SystemEvents/Artemis.Plugins.Modules.SystemEvents.csproj'
+    secrets:
+      WORKSHOP_PAT: ${{ secrets.WORKSHOP_PAT }}
+

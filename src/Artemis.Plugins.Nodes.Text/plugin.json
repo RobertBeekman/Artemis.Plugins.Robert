@@ -10,5 +10,5 @@
     "AutoEnableProperties": true,
     "RequiresAdmin": false,
     "Platforms": "Windows,Linux,OSX",
-    "Api": "1.0.0"
+    "MinimumVersion": "1.2025.1223.3"
 }
